@@ -63,12 +63,37 @@ char testing(int test)
     
 }
 
+void game()
+{
+    while(!game_stop && i != q)
+    {
+        cout << questions[i] << endl << "A: " << answers_a[i] << endl << "B: " << answers_b[i] << endl << "C: " << answers_c[i] << endl << "D: " << answers_d[i] << endl;
+        if (!test)
+            cin >> answer;
+        else{
+            answer = testing(test);
+        }
+        if(answer == correct_answers[i])
+        {
+            ++i;
+            cout << endl << "CORRECT!" << endl;
+        }
+        else
+        {
+            cout << "You lose.";
+            game_stop = true;
+        }
+    }
+    if(i == q)
+        cout << "YOU WIN!";
+}
+
 int main()
 {
     cout << "Choose your destiny; 0 - Game; 1 or 2  - Test";
     cin >> test;
     if(!test)
-        cout << "not done yet.";
+        game();
     else
     {
         test_check();
